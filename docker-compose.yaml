@@ -7,4 +7,30 @@ services:
     env_file:
       - .env
     volumes:
-      - ./postgres/data:/var/lib/postgresql/data/
+      - ./postgres/data:/var/lib/postgresql/data
+      - ./postgres/airflow_init.sh:/docker-entrypoint-initdb.d/airflow_init.sh
+    networks:
+      - main_network
+
+  airflow:
+    container_name: airflow
+    build:
+      context: ./airflow
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./extract:/opt/airflow/scripts/extract
+    networks:
+      - main_network
+    depends_on:
+      - postgres_db
+    command: >
+      bash -c "airflow db migrate && airflow standalone"
+
+networks:
+  main_network:
+    driver: bridge

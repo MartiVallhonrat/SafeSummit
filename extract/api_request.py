@@ -56,8 +56,3 @@ def fetch_weather(lat, lon):
     except:
         print(f'An error ocurred during the OpenWeatherAPI petition')
         raise
-
-# try:
-#     print(fetch_weather(0, 0))
-# except Exception as e:
-#     print(f'{e}')

@@ -2,13 +2,10 @@ from dotenv import load_dotenv
 import os
 import psycopg2 as pg2
 
-from web_scraper import fetch_trails
-from api_request import fetch_weather
-
 def connect_db():
     load_dotenv()
 
-    HOST = 'localhost'
+    HOST = 'postgres_db'
     PORT = 5432
     DB_NAME = os.getenv('POSTGRES_DB')
     if not DB_NAME:
@@ -131,15 +128,11 @@ def insert_weather_batch(conn, data):
         print(f'Error inserting weather batch')
         raise
 
-def main():
+def insert_trail(trail_data):
     try:
-        trail_data = fetch_trails()
-        weather_data = [fetch_weather(trail['lat'], trail['lon']) for trail in trail_data]
-
         conn = connect_db()
-        
+
         create_trail_table(conn)
-        create_weather_table(conn)
 
         insert_trail_batch(conn, [(
             trail['name'],
@@ -148,6 +141,19 @@ def main():
             trail['lon'],
             trail['lat']
         ) for trail in trail_data])
+    except Exception as e:
+        print(e)
+    finally:
+        if 'conn' in locals():
+            conn.close()
+            print('Database connection closed')
+
+def insert_weather(weather_data):
+    try:
+        conn = connect_db()
+
+        create_weather_table(conn)
+
         insert_weather_batch(conn, [(
             weather['lon'],
             weather['lat'],
@@ -166,7 +172,41 @@ def main():
     finally:
         if 'conn' in locals():
             conn.close()
-            print('Database connection closed')
+            print('Database connection closed')  
 
-if __name__ == '__main__':
-    main()
+# def main():
+#     try:
+#         trail_data = fetch_trails()
+#         weather_data = [fetch_weather(trail['lat'], trail['lon']) for trail in trail_data]
+
+#         conn = connect_db()
+        
+#         create_trail_table(conn)
+#         create_weather_table(conn)
+
+#         insert_trail_batch(conn, [(
+#             trail['name'],
+#             trail['distance'],
+#             trail['slope'],
+#             trail['lon'],
+#             trail['lat']
+#         ) for trail in trail_data])
+#         insert_weather_batch(conn, [(
+#             weather['lon'],
+#             weather['lat'],
+#             weather['temp'],
+#             weather['humidity'],
+#             weather['visibility'],
+#             weather['wind'],
+#             weather['rain'],
+#             weather['snow'],
+#             weather['dt'],
+#             weather['sunrise'],
+#             weather['sunset']
+#         ) for weather in weather_data])
+#     except Exception as e:
+#         print(e)
+#     finally:
+#         if 'conn' in locals():
+#             conn.close()
+#             print('Database connection closed')

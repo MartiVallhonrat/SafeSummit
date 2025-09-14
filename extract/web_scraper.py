@@ -20,7 +20,13 @@ def format_trails(records):
 
 def fetch_trails():
     top_trails = []
-    driver = webdriver.Firefox()
+
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    
+    driver = webdriver.Chrome(options=options)
     target_url = 'https://ca.wikiloc.com/wikiloc/map.do?sw=40.5231%2C0.1592&ne=42.8615%2C3.3223&place=Catalunya&page=1'
 
     driver.get(target_url)
