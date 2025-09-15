@@ -1,0 +1,112 @@
+verision: 2
+
+models:
+  - name: stg_trails
+    description: "This table contains details of the top trails in a location from the wikilock webpage"
+    columns:
+      - name: id
+        description: "Unique identifier for the trail"
+        test:
+          - unique 
+          - not_null
+
+      - name: name
+        description: "Name of the trail"
+        test:
+          - not_null
+
+      - name: distance
+        description: "Distance of the trail in kilometers"
+        test:
+          - not_null
+
+      - name: slope
+        description: "Slope of the trail in meters"
+        test:
+          - not_null
+
+      - name: lon
+        description: "Coordinates of longitude where the trail starts"
+        test:
+          - not_null
+
+      - name: lat
+        description: "Coordinates of latitude where the trail starts"
+        test:
+          - not_null
+
+      - name: inserted_at
+        description: "Timestamp when the row was inserted"
+        test:
+          - not_null
+
+      
+  - name: stg_weather
+    description: "This table contains details of the weather of the trail coordinates"
+    columns:
+      - name: id
+        description: "Unique identifier for the weather"
+        test:
+          - unique
+          - not_null
+
+      - name: lon
+        description: "Coordinates of longitude where the weather data was recorded"
+        test:
+          - not_null
+
+      - name: lat
+        description: "Coordinates of lotitude where the weather data was recorded"
+        test:
+          - not_null
+
+      - name: temperature
+        description: "Temperature in celsius"
+        test:
+          - not_null
+
+      - name: humidity
+        description: "Humidity in the air"
+        test:
+          - not_null
+
+      - name: visibility
+        description: "Visibility in meters, maximum is 10.000"
+        test:
+          - not_null
+
+      - name: wind
+        description: "Wind speed in meters/sec"
+        test:
+          - not_null
+
+      - name: rain
+        description: "Precipitation in mm/h"
+        test:
+          - not_null
+
+      - name: snow
+        description: "Snow precipitation in mm/h"
+        test:
+          - not_null
+
+      - name: datetime
+        description: "Timestamp when the weather was recorded in UTC"
+        test:
+          - not_null
+
+      - name: sunrise
+        description: "Sunrise time in UTC"
+        test:
+          - not_null
+
+      - name: sunset
+        description: "NSunset time in UTC"
+        test:
+          - not_null
+
+      - name: inserted_at
+        description: "Timestamp when the row was inserted"
+        test:
+          - not_null
+

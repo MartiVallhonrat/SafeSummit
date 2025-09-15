@@ -1,0 +1,1 @@
+SELECT * FROM {{ source('main_database', 'raw_weather_data') }}

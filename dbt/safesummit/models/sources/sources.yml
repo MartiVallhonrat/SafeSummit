@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: main_database
+    database: database
+    schema: dev
+    tables:
+      - name: raw_trail_data
+        description: "List of trails"
+      - name: raw_weather_data
+        description: "List of weather"
