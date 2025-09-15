@@ -1,0 +1,12 @@
+safesummit:
+  outputs:
+    dev:
+      dbname: "{{env_var('POSTGRES_DB')}}"
+      host: postgres_db
+      pass: "{{env_var('POSTGRES_PASSWORD')}}"
+      port: 5432
+      schema: dev
+      threads: 4
+      type: postgres
+      user: "{{env_var('POSTGRES_USER')}}"
+  target: dev
