@@ -50,6 +50,8 @@ def fetch_weather(lat, lon):
         resp = requests.get(api_url)
         resp.raise_for_status()
         record = resp.json()
+        record['coord']['lat'] = lat
+        record['coord']['lon'] = lon
         formated_record = format_weather(record)
         print('API response recived succesfully!')
         return formated_record

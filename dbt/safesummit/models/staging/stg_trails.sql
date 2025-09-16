@@ -1,7 +1,3 @@
--- just to show test
-{{ config(materialized='table', unique_key='id')}}
--- delete all the above
-
 with source as ( select * from {{ source('main_database', 'raw_trail_data') }} ),
 del_dup as (
     select
