@@ -172,41 +172,4 @@ def insert_weather(weather_data):
     finally:
         if 'conn' in locals():
             conn.close()
-            print('Database connection closed')  
-
-# def main():
-#     try:
-#         trail_data = fetch_trails()
-#         weather_data = [fetch_weather(trail['lat'], trail['lon']) for trail in trail_data]
-
-#         conn = connect_db()
-        
-#         create_trail_table(conn)
-#         create_weather_table(conn)
-
-#         insert_trail_batch(conn, [(
-#             trail['name'],
-#             trail['distance'],
-#             trail['slope'],
-#             trail['lon'],
-#             trail['lat']
-#         ) for trail in trail_data])
-#         insert_weather_batch(conn, [(
-#             weather['lon'],
-#             weather['lat'],
-#             weather['temp'],
-#             weather['humidity'],
-#             weather['visibility'],
-#             weather['wind'],
-#             weather['rain'],
-#             weather['snow'],
-#             weather['dt'],
-#             weather['sunrise'],
-#             weather['sunset']
-#         ) for weather in weather_data])
-#     except Exception as e:
-#         print(e)
-#     finally:
-#         if 'conn' in locals():
-#             conn.close()
-#             print('Database connection closed')
+            print('Database connection closed')
