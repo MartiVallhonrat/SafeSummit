@@ -3,6 +3,7 @@
 
 with trail_conditions as (
     select
+        w.id,
         t.name,
         t.trail_difficulty_score,
         t.trail_difficulty_label,

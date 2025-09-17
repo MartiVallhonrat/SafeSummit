@@ -24,6 +24,9 @@ services:
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./extract:/opt/airflow/scripts/extract
+      - /var/run/docker.sock:/var/run/docker.sock
+    group_add:
+      - '999'
     networks:
       - main_network
     depends_on:
@@ -44,7 +47,6 @@ services:
       - postgres_db
     networks:
       - main_network
-    command: run
 
 networks:
   main_network:

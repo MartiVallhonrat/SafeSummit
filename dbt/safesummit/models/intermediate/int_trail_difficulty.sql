@@ -1,6 +1,3 @@
--- just to show test
-{{ config(materialized='incremental', unique_key='id')}}
--- delete all the above
 with trail_difficulty_table as (
     select
         *,
