@@ -24,7 +24,7 @@ trail_conditions_labeled as (
         *,
         (
             case when weather_difficulty_label = 'None' or weather_difficulty_label = 'Mild' then trail_difficulty_label
-                when weather_difficulty_label = 'Noticable' then
+                when weather_difficulty_label = 'Noticeable' then
                     case when trail_difficulty_label = 'Easy' then 'Moderate'
                         when trail_difficulty_label = 'Moderate' then 'Challenging'
                         when trail_difficulty_label = 'Challenging' then 'Hard'

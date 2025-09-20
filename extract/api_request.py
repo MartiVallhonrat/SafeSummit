@@ -6,7 +6,10 @@ from datetime import datetime, timezone
 def format_weather(record):
     coord = record['coord']
     main = record['main']
-    visibility = record['visibility']
+    if 'visibility' in record:
+        visibility = record['visibility']
+    else:
+        visibility = 10000
     wind = record['wind']
     if 'rain' in record:
         rain = record['rain']

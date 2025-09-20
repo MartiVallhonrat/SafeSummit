@@ -48,6 +48,28 @@ services:
     networks:
       - main_network
 
+  superset:
+    container_name: superset_container
+    build:
+      context: ./superset
+      dockerfile: Dockerfile
+    ports:
+      - "8088:8088"
+    env_file:
+      - .env
+    volumes:
+      - ./superset/data:/app/superset_home
+    environment:
+      - DATABASE_DB=$POSTGRES_DB
+      - DATABASE_HOST=postgres_db
+      - DATABASE_PASSWORD=$POSTGRES_PASSWORD
+      - DATABASE_USER=$POSTGRES_USER
+      - DATABASE_PORT=5432
+    depends_on:
+      - postgres_db
+    networks:
+      - main_network
+
 networks:
   main_network:
     driver: bridge

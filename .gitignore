@@ -211,3 +211,6 @@ postgres/data/
 
 # dbt
 **/*.user.yml
+
+# superset
+superset/data/

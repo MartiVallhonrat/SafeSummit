@@ -32,7 +32,7 @@ def insert_weather_task(ti):
 with DAG(
     dag_id = 'safesummit_orchestrator',
     default_args = default_args,
-    schedule = timedelta(hours=1)
+    schedule = timedelta(minutes=30)
 ) as dag:
     DBT_PATH = os.environ.get('DBT_PATH')
     if not DBT_PATH:

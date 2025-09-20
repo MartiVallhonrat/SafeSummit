@@ -1,0 +1,6 @@
+import os
+
+ENABLE_PROXY_FIX = True
+SECRET_KEY = os.environ.get("SECRET_KEY")
+PREVENT_UNSAFE_DB_CONNECTIONS = False
+TALISMAN_ENABLED = False
