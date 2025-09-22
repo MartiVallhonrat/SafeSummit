@@ -56,7 +56,7 @@ All sensitive and configuration values are managed in the `.env` file.
    ```
 
 2. **Set up your `.env` file:**
-   - Copy `.env.example` to `.env` and fill in your secrets.
+   - Create a `.env` file in the root directory and fill in your secrets.
 
 3. **Start all services:**
    ```bash
